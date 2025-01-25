@@ -18,7 +18,8 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return List.of(new Product());
+        //return productRepository.findAll();
     }
 
     @PostMapping
