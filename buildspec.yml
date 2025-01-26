@@ -27,7 +27,8 @@ phases:
       - echo "imagedefinitions.json file created successfully! "
       - ls -al
       - cat imagedefinitions.json
+      - find .type f
 artifacts:
   files:
-    - '**/*'
+    - imagedefinitions.json
   discard-paths: yes
