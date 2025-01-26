@@ -28,7 +28,7 @@ phases:
       - aws ecs update-service --cluster product-service-cluster --service product-service-service --force-new-deployment --region ap-south-1
       - echo "Creating imagedefinitions.json file... "
       - echo '[{"name":"product-service","imageUri":"034362059976.dkr.ecr.ap-south-1.amazonaws.com/product-service:latest"}]' > imagedefinitions.json
-      - echo "imagedefinitions.json file created successfully!"
+      - echo "imagedefinitions.json file created successfully! "
       - ls
 
 artifacts:
