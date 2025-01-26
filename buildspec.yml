@@ -3,10 +3,6 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo "Cleaning up workspace for a fresh build..."
-      - rm -rf build
-      - rm -rf .gradle
-      - echo "Workspace cleaned."
       - echo "Logging in to Amazon ECR..."
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 034362059976.dkr.ecr.ap-south-1.amazonaws.com
 
