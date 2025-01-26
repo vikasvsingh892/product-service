@@ -29,7 +29,7 @@ phases:
       - echo "Creating imagedefinitions.json file..."
       - printf '[{"name":"product-service","imageUri":"034362059976.dkr.ecr.ap-south-1.amazonaws.com/product-service:latest"}]' > imagedefinitions.json
       - echo "imagedefinitions.json file created successfully!"
-      - ls al
+      - ls
 
 artifacts:
   files:
