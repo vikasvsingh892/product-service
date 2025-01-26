@@ -20,6 +20,7 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return List.of(new Product());
         //return productRepository.findAll();
+
     }
 
     @PostMapping
