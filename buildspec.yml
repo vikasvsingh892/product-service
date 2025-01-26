@@ -9,7 +9,7 @@ phases:
   build:
     commands:
       - echo "Starting gradle clean build..."
-      - ./gradlew build
+      - ./gradlew clean build
       - echo "Gradle build finished successfully!"
       - echo "Building the Docker image..."
       - docker build -t product-service:latest .
@@ -23,11 +23,11 @@ phases:
       - echo "Updating ECS service with the new image..."
       - aws ecs update-service --cluster product-service-cluster --service product-service-service --force-new-deployment --region ap-south-1
       - echo "Creating imagedefinitions.json file... "
-      - echo '[{"name":"product-service","imageUri":"034362059976.dkr.ecr.ap-south-1.amazonaws.com/product-service:latest"}]' > imagedefinitions.json
+      - printf '[{"name":"product-service","imageUri":"034362059976.dkr.ecr.ap-south-1.amazonaws.com/product-service:latest"}]' > imagedefinitions.json
       - echo "imagedefinitions.json file created successfully! "
       - ls -al
       - cat imagedefinitions.json
-      - find .-type f
+      - find . -type f
 artifacts:
   files:
     - imagedefinitions.json
