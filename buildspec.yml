@@ -30,7 +30,7 @@ phases:
       - echo '[{"name":"product-service","imageUri":"034362059976.dkr.ecr.ap-south-1.amazonaws.com/product-service:latest"}]' > imagedefinitions.json
       - echo "imagedefinitions.json file created successfully! "
       - ls -al
-      - cat imagedefintions.js
+      - cat imagedefinitions.json
 
 artifacts:
   files:
