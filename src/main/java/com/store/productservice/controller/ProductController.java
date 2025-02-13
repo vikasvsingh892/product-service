@@ -3,6 +3,8 @@ package com.store.productservice.controller;
 import com.store.productservice.model.Product;
 import com.store.productservice.service.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,18 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+    public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable) {
+        return ResponseEntity.ok(productService.getAllProducts(pageable));
+    }
+
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProductsByName(@RequestParam String name) {
+        return ResponseEntity.ok(productService.searchProductsByName(name));
     }
 
     @GetMapping("/{id}")
