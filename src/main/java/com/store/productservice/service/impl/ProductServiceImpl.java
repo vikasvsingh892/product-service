@@ -4,6 +4,8 @@ import com.store.productservice.model.Product;
 import com.store.productservice.repository.ProductRepository;
 import com.store.productservice.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByNameContainingIgnoreCase(name);
     }
 
+    @Cacheable(value = "products", key = "#id")
     @Override
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
@@ -43,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+    @CacheEvict(value = "products", key = "#id")
     @Override
     public Product updateProduct(Long id, Product product) {
         return productRepository.findById(id).map(existingProduct -> {

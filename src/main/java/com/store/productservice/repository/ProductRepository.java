@@ -4,6 +4,9 @@ import com.store.productservice.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -18,4 +21,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // Pagination & Sorting
     Page<Product> findAll(Pageable pageable);
+
+    @Modifying
+    @Query("INSERT INTO Product (name, price, category) VALUES (:name, :price, :category)")
+    void bulkInsert(@Param("name") String name, @Param("price") Double price, @Param("category") String category);
 }
