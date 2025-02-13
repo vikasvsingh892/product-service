@@ -10,5 +10,11 @@ COPY build/libs/product-service-0.0.1-SNAPSHOT.jar product-service.jar
 # Expose port 8080 (Spring Boot default)
 EXPOSE 8080
 
+# Create logs directory
+RUN mkdir -p /logs
+
+# Set up volume for logs
+VOLUME ["/logs"]
+
 # Run the JAR
 ENTRYPOINT ["java", "-jar", "product-service.jar"]
